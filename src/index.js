@@ -1,6 +1,5 @@
 const process = require('process');
 const inquirer = require('inquirer');
-inquirer.registerPrompt('checkbox-plus', require('inquirer-checkbox-plus-prompt'));
 const fs = require('fs');
 const path = require('path');
 const ExpressApp = require('./ExpressApp');
@@ -25,6 +24,7 @@ async function start() {
             inquirer
                 .prompt(
                     [
+
                         {
                             type: 'checkbox',
                             name: 'middlewares',
@@ -35,8 +35,9 @@ async function start() {
                         }
                     ])
                 .then((answers) => {
+                    if (answers.middleware.includes('ejs'))
+                        options.type = 'SERVER'; //IF EJS is used as middleware then the app type is clear
                     console.log(answers);
-                    // Use user feedback for... whatever!!
                 })
                 .catch(errorCatch);
         }

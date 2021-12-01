@@ -1,5 +1,11 @@
 const fs = require('fs');
 
+//Enums
+const SERVER_OPTIONS = {
+    REST: 'REST',
+    SERVER: 'SERVER'
+}
+
 class ExpressApp {
     constructor(options = {}) {
         this.options = options;
@@ -27,8 +33,8 @@ class ExpressApp {
             this.information.dependencies = [...this.information.dependencies, ...this.options.middleware]
 
         this.information.type = this.options.type;
-        if (this.options.type == 'SERVER')
-            this.options.ejs ? this.information.dependencies.push('ejs') : null;
+        if (this.options.middleware.includes('ejs'))
+            this.options.type = SERVER_OPTIONS.SERVER;
     }
     create() {
 
