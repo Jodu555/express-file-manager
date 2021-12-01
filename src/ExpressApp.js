@@ -20,6 +20,9 @@ class ExpressApp {
     create() {
 
     }
+    update() {
+
+    }
     saveInfo() {
 
     }

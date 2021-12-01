@@ -1,5 +1,6 @@
 const process = require('process');
 const inquirer = require('inquirer');
+const fs = require('fs');
 const ExpressApp = require('./ExpressApp');
 
 async function start() {
@@ -10,24 +11,28 @@ async function start() {
         helmet: true,
         cors: true
     };
-    if (process.argv.includes('--y')) {
-        const app = new ExpressApp(options);
-        app.create();
+    if (!fs.existsSync('./describe.json')) {
+        if (process.argv.includes('--y')) {
+            const app = new ExpressApp(options);
+            app.create();
+        } else {
+            await inquirer
+                .prompt([
+                    {
+                        type: 'confirm',
+                        name: 'morgan',
+                        message: 'Do you want morgan',
+                        default: true,
+                    }
+                ])
+                .then((answers) => {
+                    console.log(answers);
+                    // Use user feedback for... whatever!!
+                })
+                .catch(errorCatch);
+        }
     } else {
-        await inquirer
-            .prompt([
-                {
-                    type: 'confirm',
-                    name: 'morgan',
-                    message: 'Do you want morgan',
-                    default: true,
-                }
-            ])
-            .then((answers) => {
-                console.log(answers);
-                // Use user feedback for... whatever!!
-            })
-            .catch(errorCatch);
+
     }
 }
 
