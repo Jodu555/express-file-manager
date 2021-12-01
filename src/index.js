@@ -1,5 +1,6 @@
 const process = require('process');
 const inquirer = require('inquirer');
+inquirer.registerPrompt('checkbox-plus', require('inquirer-checkbox-plus-prompt'));
 const fs = require('fs');
 const path = require('path');
 const ExpressApp = require('./ExpressApp');
@@ -21,15 +22,18 @@ async function start() {
             const app = new ExpressApp(options);
             app.create();
         } else {
-            await inquirer
-                .prompt([
-                    {
-                        type: 'confirm',
-                        name: 'morgan',
-                        message: 'Do you want morgan',
-                        default: true,
-                    }
-                ])
+            inquirer
+                .prompt(
+                    [
+                        {
+                            type: 'checkbox',
+                            name: 'middlewares',
+                            message: 'Please select any type of middleware you want to use!',
+                            choices: ['cors', 'morgan', 'helmet', 'ejs'],
+                            highlight: true,
+                            default: ['morgan'],
+                        }
+                    ])
                 .then((answers) => {
                     console.log(answers);
                     // Use user feedback for... whatever!!
