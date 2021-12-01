@@ -14,7 +14,9 @@ async function start() {
         dir: process.cwd(),
         morgan: true,
         helmet: true,
-        cors: true
+        cors: true,
+        type: 'REST',
+        ejs: false
     };
     if (!fs.existsSync('./describe.json')) {
         if (process.argv.includes('--y')) {
