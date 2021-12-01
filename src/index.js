@@ -1,12 +1,17 @@
 const process = require('process');
 const inquirer = require('inquirer');
 const fs = require('fs');
+const path = require('path');
 const ExpressApp = require('./ExpressApp');
 
 async function start() {
+
+    //TO get some own files: path.join(__dirname, 'name')
+    //TO get some files from the dir where its executed: process.cwd()
+
     console.log(process.argv);
     const options = {
-        dir: '.',
+        dir: process.cwd(),
         morgan: true,
         helmet: true,
         cors: true
@@ -47,5 +52,3 @@ const errorCatch = (error) => {
 }
 
 start();
-
-// console.log(process.cwd());
