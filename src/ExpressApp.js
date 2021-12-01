@@ -9,9 +9,6 @@ const SERVER_OPTIONS = {
 class ExpressApp {
     constructor(options = {}) {
         this.options = options;
-        // morgan: true,
-        // helmet: true,
-        // cors: true
         this.information = {
             type: 'REST|SERVER', //REST is only with REST Endpoints | SERVER is e.g. with also html and ejs
             entry: 'src/index.js',
@@ -37,16 +34,16 @@ class ExpressApp {
             this.options.type = SERVER_OPTIONS.SERVER;
     }
     create() {
-
+        //Write The whole file once
     }
     update() {
-
+        //Append something to the file
     }
     saveInfo() {
-
+        //Save the informations about the current app state
     }
     loadInfo() {
-
+        //Load the informations about the current app state
     }
 }
 
