@@ -4,6 +4,7 @@ class ExpressApp {
     constructor(options) {
         this.options = options;
         this.information = {
+            type: 'REST|SERVER', //REST is only with REST Endpoints | SERVER is e.g. with also html and ejs
             entry: 'src/index.js',
             database: true, //Uses the @jodu555/mysqlapi api
             authentication: {
