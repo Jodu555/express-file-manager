@@ -1,11 +1,18 @@
 const process = require('process');
-
 const inquirer = require('inquirer');
+const ExpressApp = require('./ExpressApp');
 
 async function start() {
     console.log(process.argv);
+    const options = {
+        dir: '.',
+        morgan: true,
+        helmet: true,
+        cors: true
+    };
     if (process.argv.includes('--y')) {
-
+        const app = new ExpressApp(options);
+        app.create();
     } else {
         await inquirer
             .prompt([
@@ -29,7 +36,6 @@ async function start() {
 const errorCatch = (error) => {
     if (error.isTtyError) {
         console.error('Your System does not support this type of Terminal interaction!');
-        // Prompt couldn't be rendered in the current environment
     } else {
         // Something else went wrong
     }
