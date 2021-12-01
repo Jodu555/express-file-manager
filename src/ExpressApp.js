@@ -23,9 +23,8 @@ class ExpressApp {
         console.log(this.information);
     }
     setup() {
-        this.options.morgan ? this.information.dependencies.push('morgan') : null;
-        this.options.helmet ? this.information.dependencies.push('helmet') : null;
-        this.options.cors ? this.information.dependencies.push('cors') : null;
+        if (this.options.middleware)
+            this.information.dependencies = [...this.information.dependencies, ...this.options.middleware]
 
         this.information.type = this.options.type;
         if (this.options.type == 'SERVER')

@@ -12,9 +12,7 @@ async function start() {
     console.log(process.argv);
     const options = {
         dir: process.cwd(),
-        morgan: true,
-        helmet: true,
-        cors: true,
+        middleware: ['morgan', 'helmet', 'cors'],
         type: 'REST',
         ejs: false
     };
