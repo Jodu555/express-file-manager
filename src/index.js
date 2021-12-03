@@ -10,14 +10,16 @@ async function start() {
     //TO get some files from the dir where its executed: process.cwd()
 
     // console.log(process.argv);
-    const options = {
+    const options = {};
+    const defaultOptions = {
         dir: process.cwd(),
         middleware: ['morgan', 'helmet', 'cors'],
         type: 'REST',
+        entry: 'src/index.js',
     };
     if (!fs.existsSync('./describe.json')) {
         if (process.argv.includes('--y')) {
-            const app = new ExpressApp(options);
+            const app = new ExpressApp(defaultOptions);
             app.create();
         } else {
             inquirer.prompt(
@@ -43,6 +45,11 @@ async function start() {
                 }
                 options.middleware = answers.middlewares;
                 options.entry = answers.entry;
+
+                if (options.type) {
+                    //TODO: Ask question for server type
+                }
+
                 console.log(answers);
             })
                 .catch(errorCatch);
