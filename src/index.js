@@ -28,15 +28,23 @@ async function start() {
                         message: 'Please select any type of middleware you want to use!',
                         choices: ['cors', 'morgan', 'helmet', 'ejs'],
                         highlight: true
+                    },
+                    {
+                        type: 'input',
+                        name: 'entry',
+                        message: 'Please define what your server entry file should be',
+                        default: 'src/index.js'
                     }
-                ])
-                .then((answers) => {
-                    if (answers.middlewares.includes('ejs')) {
-                        console.log('Since youve used ejs as middleware your Server_Type is now set to SERVER instead of REST');
-                        options.type = 'SERVER'; //IF EJS is used as middleware then the app type is clear
-                    }
-                    console.log(answers);
-                })
+                ]
+            ).then((answers) => {
+                if (answers.middlewares.includes('ejs')) {
+                    console.log('Since youve used ejs as middleware your Server_Type is now set to SERVER instead of REST');
+                    options.type = 'SERVER'; //IF EJS is used as middleware then the app type is clear
+                }
+                options.middleware = answers.middlewares;
+                options.entry = answers.entry;
+                console.log(answers);
+            })
                 .catch(errorCatch);
         }
     } else {
