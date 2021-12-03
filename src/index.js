@@ -35,8 +35,9 @@ async function start() {
                         }
                     ])
                 .then((answers) => {
-                    if (answers.middleware.includes('ejs')) {
-                        console.log('Since youve used ejs as middleware your Server Type is not REST');
+                    console.log(answers);
+                    if (answers.middlewares.includes('ejs')) {
+                        console.log('Since youve used ejs as middleware your Server_Type is now set to SERVER instead of REST');
                         options.type = 'SERVER'; //IF EJS is used as middleware then the app type is clear
                     }
                     console.log(answers);
@@ -51,6 +52,7 @@ async function start() {
 
 
 const errorCatch = (error) => {
+    console.log(error);
     if (error.isTtyError) {
         console.error('Your System does not support this type of Terminal interaction!');
     } else {
