@@ -14,28 +14,23 @@ async function start() {
         dir: process.cwd(),
         middleware: ['morgan', 'helmet', 'cors'],
         type: 'REST',
-        ejs: false
     };
     if (!fs.existsSync('./describe.json')) {
         if (process.argv.includes('--y')) {
             const app = new ExpressApp(options);
             app.create();
         } else {
-            inquirer
-                .prompt(
-                    [
-
-                        {
-                            type: 'checkbox',
-                            name: 'middlewares',
-                            message: 'Please select any type of middleware you want to use!',
-                            choices: ['cors', 'morgan', 'helmet', 'ejs'],
-                            highlight: true,
-                            default: ['morgan'],
-                        }
-                    ])
+            inquirer.prompt(
+                [
+                    {
+                        type: 'checkbox',
+                        name: 'middlewares',
+                        message: 'Please select any type of middleware you want to use!',
+                        choices: ['cors', 'morgan', 'helmet', 'ejs'],
+                        highlight: true
+                    }
+                ])
                 .then((answers) => {
-                    console.log(answers);
                     if (answers.middlewares.includes('ejs')) {
                         console.log('Since youve used ejs as middleware your Server_Type is now set to SERVER instead of REST');
                         options.type = 'SERVER'; //IF EJS is used as middleware then the app type is clear
