@@ -9,7 +9,7 @@ async function start() {
     //TO get some own files: path.join(__dirname, 'name')
     //TO get some files from the dir where its executed: process.cwd()
 
-    console.log(process.argv);
+    // console.log(process.argv);
     const options = {
         dir: process.cwd(),
         middleware: ['morgan', 'helmet', 'cors'],
@@ -35,8 +35,10 @@ async function start() {
                         }
                     ])
                 .then((answers) => {
-                    if (answers.middleware.includes('ejs'))
+                    if (answers.middleware.includes('ejs')) {
+                        console.log('Since youve used ejs as middleware your Server Type is not REST');
                         options.type = 'SERVER'; //IF EJS is used as middleware then the app type is clear
+                    }
                     console.log(answers);
                 })
                 .catch(errorCatch);
