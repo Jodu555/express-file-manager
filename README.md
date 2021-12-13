@@ -14,9 +14,11 @@ An CLI Tool to create a new express server or add routes or something like that
 
 ## Folder Structure 
 
+```
 ├── src
 │   ├── index.js   
 │   ├── utils
 |   |   └── index.js
 ├── .env
 └── README.md
+```
