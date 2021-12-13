@@ -18,7 +18,16 @@ An CLI Tool to create a new express server or add routes or something like that
 ├── src
 │   ├── index.js   
 │   ├── utils
+|   |   ├── authManager.js
+|   |   └── middleware.js
+|   ├── database
 |   |   └── index.js
+|   └── routes
+|       └── exampleRoute
+|           ├── index.js
+|           └── controller.js
+├── static
+├── views
 ├── .env
 └── README.md
 ```
