@@ -17,7 +17,7 @@ An CLI Tool to create a new express server or add routes or something like that
 ```
 ├── src
 │   ├── index.js  : App Entry Point
-│   ├── utils
+│   ├── utils  : All Utility files
 |   |   ├── authManager.js  : Authentication-Handling
 |   |   └── middleware.js  : Not Found and Error Middleware
 |   ├── database  : All Database related Stuff
@@ -26,8 +26,10 @@ An CLI Tool to create a new express server or add routes or something like that
 |       └── exampleRoute  : one Route
 |           ├── index.js  : Where the router livs and the function calls
 |           └── controller.js  : Where the functions live
-├── static
-├── views
-├── .env
+├── static  : All static files
+├── views  : All ejs files
+|   ├── pages : All Real pages
+|   └── partials  : Partials which are used in the pages
+├── .env  : The Environment Variables
 └── README.md
 ```
