@@ -16,16 +16,16 @@ An CLI Tool to create a new express server or add routes or something like that
 
 ```
 ├── src
-│   ├── index.js   
+│   ├── index.js  : App Entry Point
 │   ├── utils
-|   |   ├── authManager.js
-|   |   └── middleware.js
-|   ├── database
-|   |   └── index.js
-|   └── routes
-|       └── exampleRoute
-|           ├── index.js
-|           └── controller.js
+|   |   ├── authManager.js  : Authentication-Handling
+|   |   └── middleware.js  : Not Found and Error Middleware
+|   ├── database  : All Database related Stuff
+|   |   └── index.js  : Table definitions and Schemas
+|   └── routes  : All Routes
+|       └── exampleRoute  : one Route
+|           ├── index.js  : Where the router livs and the function calls
+|           └── controller.js  : Where the functions live
 ├── static
 ├── views
 ├── .env
